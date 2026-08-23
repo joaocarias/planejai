@@ -7,6 +7,8 @@ import {
   Wallet,
 } from 'lucide-react'
 
+import type { InsightData } from '@/services/aiService'
+
 import type { FormStepProps } from '../components/features/Simulation/FormStep'
 
 export const simulationFormSteps = [
@@ -14,34 +16,37 @@ export const simulationFormSteps = [
     id: 'income',
     icon: PiggyBank,
     title: 'Renda mensal bruta',
-    question: 'Quanto é depositado na sua conta todo mês (somando todas as fontes)?',
+    question:
+      'Quanto é depositado na sua conta todo mês (somando todas as fontes)?',
     inputProps: {
       placeholder: 'ex: 5.000,00',
       prefix: 'R$',
-      maxLength: 12, 
-    }
+      maxLength: 12,
+    },
   },
   {
     id: 'expenses',
     icon: CreditCard,
     title: 'Custos fixos de vida',
-    question: 'Quanto você gasta mensalmente com custos fixos (aluguel, contas, etc)?',
+    question:
+      'Quanto você gasta mensalmente com custos fixos (aluguel, contas, etc)?',
     inputProps: {
       placeholder: 'ex: 2.000,00',
       prefix: 'R$',
-      maxLength: 12, 
-    }
+      maxLength: 12,
+    },
   },
   {
     id: 'debts',
     icon: Landmark,
     title: 'Dívidas / parcelas',
-    question: 'Você tem algum valor compromeido com parcelas ou empréstimos mensalmente?',
+    question:
+      'Você tem algum valor compromeido com parcelas ou empréstimos mensalmente?',
     inputProps: {
       placeholder: 'ex: 500,00',
       prefix: 'R$',
-      maxLength: 12, 
-    }
+      maxLength: 12,
+    },
   },
   {
     id: 'goalName',
@@ -50,8 +55,8 @@ export const simulationFormSteps = [
     question: 'Qual o objetivo que você deseja alcançar?',
     inputProps: {
       placeholder: 'ex: Viagem para o Japão',
-      maxLength: 50, 
-    }
+      maxLength: 50,
+    },
   },
   {
     id: 'goalAmount',
@@ -61,8 +66,8 @@ export const simulationFormSteps = [
     inputProps: {
       placeholder: 'ex: 15.000,00',
       prefix: 'R$',
-      maxLength: 12, 
-    }
+      maxLength: 12,
+    },
   },
   {
     id: 'goalDeadline',
@@ -74,7 +79,7 @@ export const simulationFormSteps = [
       placeholder: 'ex: 12',
       suffix: 'meses',
       min: 1,
-      maxLength: 120, 
+      maxLength: 120,
     },
     submitButtonProps: {
       label: 'Gerar simulação',
@@ -84,6 +89,11 @@ export const simulationFormSteps = [
 ] satisfies FormStepProps[]
 
 export type SimulationFormData = Record<
-  (typeof simulationFormSteps)[number]['id'], 
+  (typeof simulationFormSteps)[number]['id'],
   string
 >
+
+export type SimulationRecord = SimulationFormData & {
+  id: string
+  insight?: InsightData
+}
